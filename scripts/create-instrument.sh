@@ -6,7 +6,7 @@ curl "${API}${URL_PATH}" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
-  --header "Authorization: Token token=8a9d5dfe68f51d16e2f11e6c4028f23b" \
+  --header "Authorization: Token token=eac73dcfb3904e618f29b73829a47054" \
   --data '{
     "instrument": {
       "instrument_type": "Stradivarius",

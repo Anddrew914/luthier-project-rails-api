@@ -1,4 +1,4 @@
-class InstrumentsController < ApplicationController
+class InstrumentsController < OpenReadController
   before_action :set_instrument, only: [:show, :update, :destroy]
 
   # GET /instruments
@@ -15,7 +15,7 @@ class InstrumentsController < ApplicationController
 
   # POST /instruments
   def create
-    @instrument = Instrument.new(instrument_params)
+    @instrument = current_user.instruments.build(instrument_params)
 
     if @instrument.save
       render json: @instrument, status: :created, location: @instrument
@@ -46,6 +46,6 @@ class InstrumentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def instrument_params
-      params.require(:instrument).permit(:instrument_type, :maker, :price, :details)
+      params.require(:instrument).permit(:instrument_type, :price, :user_id)
     end
 end
