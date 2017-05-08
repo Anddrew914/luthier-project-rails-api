@@ -3,7 +3,7 @@ class InstrumentsController < OpenReadController
 
   # GET /instruments
   def index
-    @instruments = Instrument.all
+    @instruments = current_user.instruments.all
 
     render json: @instruments
   end
@@ -41,11 +41,11 @@ class InstrumentsController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_instrument
-      @instrument = Instrument.find(params[:id])
+      @instrument = current_user.Instruments.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def instrument_params
-      params.require(:instrument).permit(:instrument_type, :price, :user_id)
+      params.require(:instrument).permit(:instrument_type, :price)
     end
 end
