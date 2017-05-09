@@ -41,11 +41,11 @@ class InstrumentsController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_instrument
-      @instrument = current_user.Instruments.find(params[:id])
+      @instrument = current_user.instruments.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def instrument_params
-      params.require(:instrument).permit(:instrument_type, :price)
+      params.require(:instrument).permit(:instrument_type, :price).reject { |_, v| v.blank? }
     end
 end
